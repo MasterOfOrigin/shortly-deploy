@@ -3,7 +3,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      'public/dist/app.min.js': ['public/client/**/*.js', 'public/lib/**/*.js'],
+      'public/dist/vendor.min.js': ['public/lib/jquery.js', 'public/lib/underscore.js', 'public/lib/backbone.js', 'public/lib/handlebars.js'],
+      'public/dist/app.min.js': 'public/client/**/*.js'
     },
 
     uglify: {
@@ -85,8 +86,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['mochaTest']);
 
-
-  grunt.registerTask('build', ['eslint', 'concat', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['eslint', 
+    'concat', 
+    //'uglify', 
+    'cssmin']);
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
