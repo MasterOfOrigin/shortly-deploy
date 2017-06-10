@@ -3,6 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      'dist/app.min.js': ['public/client/**/*.js', 'public/lib/**/*.js'],
     },
 
     mochaTest: {
@@ -21,6 +22,7 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      'dist/app.min.js': 'dist/app.min.js'
     },
 
     eslint: {
@@ -51,6 +53,9 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+      },
+      push: {
+        command: 'git push live'
       }
     },
   });
@@ -76,8 +81,7 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', []);
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
@@ -87,9 +91,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-  ]);
-
+  grunt.registerTask('deploy', ['test', 'build', 'upload']);
 
 };
