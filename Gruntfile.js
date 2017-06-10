@@ -3,17 +3,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      'dist/app.min.js': ['public/client/**/*.js', 'public/lib/**/*.js'],
+      'public/dist/app.min.js': ['public/client/**/*.js', 'public/lib/**/*.js'],
     },
 
     uglify: {
-      'dist/app.min.js': 'dist/app.min.js'
+      'public/dist/app.min.js': 'public/dist/app.min.js'
     },
 
     cssmin: {
       target: {
         files: {
-          'dist/app.min.css': 'public/*.css'
+          'public/dist/app.min.css': 'public/*.css'
         }
       }
     },
